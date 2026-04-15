@@ -1,1937 +1,961 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
   <meta charset="UTF-8" />
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <title>Promotions | NextGen Gaming</title>
-
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-
-
   <style>
-
     :root {
-
       --bg: #f5f7fb;
-
       --card: #ffffff;
-
       --text: #111827;
-
       --muted: #6b7280;
-
       --line: #e5e7eb;
-
       --blue: #0d6efd;
-
       --indigo: #4338ca;
-
       --red: #dc2626;
-
       --green: #198754;
-
       --dark: #0f172a;
-
       --shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
-
       --radius-xl: 28px;
-
       --radius-lg: 22px;
-
       --radius-md: 16px;
-
     }
-
-
 
     * {
-
       box-sizing: border-box;
-
     }
-
-
 
     html {
-
       scroll-behavior: smooth;
-
     }
-
-
 
     body {
-
       margin: 0;
-
       background: linear-gradient(180deg, #eef2f8 0%, #f8fafc 100%);
-
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
       color: var(--text);
-
     }
-
-
 
     a {
-
       text-decoration: none;
-
     }
-
-
 
     .hero {
-
       padding: 34px 0 18px;
-
     }
-
-
 
     .featured-banner {
-
       position: relative;
-
       overflow: hidden;
-
       border-radius: 34px;
-
       min-height: 440px;
-
       background:
-
         linear-gradient(90deg, rgba(8, 15, 35, 0.9) 0%, rgba(8, 15, 35, 0.72) 42%, rgba(8, 15, 35, 0.22) 100%),
-
-        url("image/herobanner.jpeg") center/cover no-repeat;
-
+        url("images/herobanner.jpeg") center/cover no-repeat;
       box-shadow: 0 24px 50px rgba(17, 24, 39, 0.16);
-
       display: flex;
-
       align-items: center;
-
     }
-
-
 
     .featured-banner::before {
-
       content: "";
-
       position: absolute;
-
       inset: 0;
-
       background: radial-gradient(circle at right top, rgba(13, 110, 253, 0.22), transparent 30%);
-
       pointer-events: none;
-
     }
-
-
 
     .featured-content {
-
       position: relative;
-
       z-index: 2;
-
       max-width: 600px;
-
       color: white;
-
       padding: 50px 46px;
-
     }
-
-
 
     .hero-kicker {
-
       display: inline-block;
-
       background: linear-gradient(135deg, #ef4444, #dc2626);
-
       padding: 8px 16px;
-
       border-radius: 999px;
-
       font-size: 0.86rem;
-
       font-weight: 800;
-
       margin-bottom: 16px;
-
       box-shadow: 0 10px 24px rgba(220, 38, 38, 0.32);
-
     }
-
-
 
     .featured-content h1 {
-
       font-size: 3.4rem;
-
       line-height: 1.05;
-
       font-weight: 800;
-
       margin-bottom: 14px;
-
       letter-spacing: -1px;
-
     }
-
-
 
     .featured-content p {
-
       color: rgba(255, 255, 255, 0.88);
-
       font-size: 1.06rem;
-
       line-height: 1.75;
-
       margin-bottom: 22px;
-
     }
-
-
 
     .hero-actions {
-
       display: flex;
-
       gap: 12px;
-
       flex-wrap: wrap;
-
     }
-
-
 
     .hero-actions .btn {
-
       border-radius: 14px;
-
       font-weight: 700;
-
       padding: 12px 18px;
-
     }
-
-
 
     .promo-stats {
-
       display: flex;
-
       gap: 14px;
-
       flex-wrap: wrap;
-
       margin-top: 14px;
-
     }
-
-
 
     .promo-stat {
-
       background: rgba(255, 255, 255, 0.12);
-
       border: 1px solid rgba(255, 255, 255, 0.18);
-
       border-radius: 16px;
-
       padding: 12px 16px;
-
       min-width: 140px;
-
       backdrop-filter: blur(6px);
-
     }
-
-
 
     .promo-stat strong {
-
       display: block;
-
       font-size: 1.1rem;
-
       font-weight: 800;
-
       color: #fff;
-
     }
-
-
 
     .promo-stat span {
-
       font-size: 0.88rem;
-
       color: rgba(255, 255, 255, 0.8);
-
     }
-
-
 
     .page-section {
-
       padding: 22px 0 8px;
-
     }
-
-
 
     .section-header {
-
       display: flex;
-
       align-items: end;
-
       justify-content: space-between;
-
       gap: 18px;
-
       margin-bottom: 18px;
-
       flex-wrap: wrap;
-
     }
-
-
 
     .section-header h2 {
-
       font-size: 2rem;
-
       margin: 0;
-
       font-weight: 800;
-
       color: var(--text);
-
     }
-
-
 
     .section-header p {
-
       margin: 0;
-
       color: var(--muted);
-
       font-size: 0.98rem;
-
     }
-
-
 
     .see-all {
-
       color: var(--blue);
-
       font-weight: 700;
-
       font-size: 0.95rem;
-
     }
-
-
 
     .store-grid {
-
       display: grid;
-
       grid-template-columns: repeat(4, minmax(0, 1fr));
-
       gap: 20px;
-
     }
-
-
 
     .product-card {
-
       background: var(--card);
-
       border-radius: var(--radius-lg);
-
       overflow: hidden;
-
       box-shadow: var(--shadow);
-
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-
       height: 100%;
-
       display: flex;
-
       flex-direction: column;
-
       border: 1px solid rgba(229, 231, 235, 0.8);
-
     }
-
-
 
     .product-card:hover {
-
       transform: translateY(-8px);
-
       box-shadow: 0 22px 46px rgba(15, 23, 42, 0.14);
-
     }
-
-
 
     .product-image-wrap {
-
       position: relative;
-
       overflow: hidden;
-
       background: #e5e7eb;
-
     }
-
-
 
     .product-image-wrap img {
-
       width: 100%;
-
       height: 230px;
-
       object-fit: cover;
-
       transition: transform 0.45s ease;
-
       display: block;
-
     }
-
-
 
     .product-card:hover .product-image-wrap img {
-
       transform: scale(1.06);
-
     }
-
-
 
     .discount-badge {
-
       position: absolute;
-
       top: 14px;
-
       left: 14px;
-
       background: linear-gradient(135deg, #ef4444, #dc2626);
-
       color: white;
-
       padding: 7px 14px;
-
       border-radius: 999px;
-
       font-size: 0.82rem;
-
       font-weight: 800;
-
       box-shadow: 0 8px 18px rgba(220, 38, 38, 0.28);
-
       z-index: 2;
-
     }
-
-
 
     .product-body {
-
       padding: 18px 18px 20px;
-
       display: flex;
-
       flex-direction: column;
-
       height: 100%;
-
     }
-
-
 
     .product-type {
-
       display: inline-block;
-
       width: fit-content;
-
       margin-bottom: 10px;
-
       padding: 5px 11px;
-
       border-radius: 999px;
-
       background: #eef2ff;
-
       color: var(--indigo);
-
       font-size: 0.76rem;
-
       font-weight: 800;
-
       text-transform: uppercase;
-
       letter-spacing: 0.4px;
-
     }
-
-
 
     .product-title {
-
       font-size: 1.18rem;
-
       font-weight: 800;
-
       line-height: 1.35;
-
       margin-bottom: 8px;
-
       color: var(--text);
-
       min-height: 50px;
-
     }
-
-
 
     .product-desc {
-
       font-size: 0.95rem;
-
       color: #4b5563;
-
       line-height: 1.65;
-
       margin-bottom: 14px;
-
       min-height: 76px;
-
     }
-
-
 
     .bundle-box {
-
       background: #f8fafc;
-
       border: 1px solid #edf2f7;
-
       border-radius: 16px;
-
       padding: 13px 14px;
-
       margin-bottom: 14px;
-
     }
-
-
 
     .bundle-box h6 {
-
       font-size: 0.8rem;
-
       color: var(--blue);
-
       text-transform: uppercase;
-
       font-weight: 800;
-
       margin-bottom: 8px;
-
       letter-spacing: 0.4px;
-
     }
-
-
 
     .bundle-box ul {
-
       padding-left: 18px;
-
       margin: 0;
-
       color: #4b5563;
-
       font-size: 0.93rem;
-
     }
-
-
 
     .bundle-box li {
-
       margin-bottom: 4px;
-
     }
-
-
 
     .price-row {
-
       margin-top: auto;
-
       margin-bottom: 15px;
-
       display: flex;
-
       align-items: center;
-
       gap: 10px;
-
       flex-wrap: wrap;
-
     }
-
-
 
     .old-price {
-
       color: #9ca3af;
-
       text-decoration: line-through;
-
       font-size: 0.92rem;
-
     }
-
-
 
     .sale-price {
-
       color: var(--red);
-
       font-size: 1.45rem;
-
       font-weight: 800;
-
       letter-spacing: -0.4px;
-
     }
-
-
 
     .normal-price {
-
       color: var(--blue);
-
       font-size: 1.33rem;
-
       font-weight: 800;
-
     }
-
-
 
     .save-tag {
-
       display: inline-flex;
-
       align-items: center;
-
       gap: 6px;
-
       background: #fef2f2;
-
       color: var(--red);
-
       border: 1px solid #fecaca;
-
       padding: 6px 10px;
-
       border-radius: 999px;
-
       font-size: 0.8rem;
-
       font-weight: 800;
-
       margin-bottom: 14px;
-
       width: fit-content;
-
     }
-
-
 
     .product-actions {
-
       display: flex;
-
       gap: 10px;
-
     }
-
-
 
     .product-actions .btn {
-
       border-radius: 14px;
-
       font-weight: 700;
-
       padding: 10px 14px;
-
       font-size: 0.94rem;
-
     }
-
-
 
     .promo-strip {
-
       margin: 36px 0 18px;
-
       border-radius: 30px;
-
       overflow: hidden;
-
       background:
-
         linear-gradient(90deg, rgba(12, 25, 60, 0.94), rgba(42, 67, 160, 0.8)),
-
-        url("image/easportfc.jpeg") center/cover no-repeat;
-
+        url("images/easportfc.jpeg") center/cover no-repeat;
       box-shadow: 0 18px 40px rgba(17, 24, 39, 0.12);
-
     }
-
-
 
     .promo-strip-content {
-
       padding: 42px 38px;
-
       color: white;
-
       max-width: 680px;
-
     }
-
-
 
     .promo-strip h3 {
-
       font-size: 2.2rem;
-
       font-weight: 800;
-
       margin-bottom: 12px;
-
     }
-
-
 
     .promo-strip p {
-
       color: rgba(255, 255, 255, 0.9);
-
       line-height: 1.75;
-
       margin-bottom: 18px;
-
     }
-
-
 
     .promo-strip .btn {
-
       border-radius: 14px;
-
       font-weight: 700;
-
       padding: 11px 18px;
-
     }
-
-
 
     .custom-modal {
-
       position: fixed;
-
       inset: 0;
-
       background: rgba(0, 0, 0, 0.42);
-
       backdrop-filter: blur(4px);
-
       display: none;
-
       align-items: center;
-
       justify-content: center;
-
       z-index: 9999;
-
       padding: 20px;
-
     }
-
-
 
     .custom-modal-box {
-
       background: white;
-
       width: 100%;
-
       max-width: 420px;
-
       border-radius: 22px;
-
       padding: 30px 24px;
-
       text-align: center;
-
       box-shadow: 0 18px 38px rgba(0, 0, 0, 0.18);
-
     }
-
-
 
     .custom-modal-icon {
-
       font-size: 2.3rem;
-
       margin-bottom: 10px;
-
     }
-
-
 
     .custom-modal h4 {
-
       font-size: 1.5rem;
-
       font-weight: 800;
-
       margin-bottom: 10px;
-
     }
-
-
 
     .custom-modal p {
-
       color: #555;
-
       line-height: 1.6;
-
       margin-bottom: 20px;
-
     }
-
-
 
     footer {
-
       background: #0f172a;
-
       color: white;
-
       text-align: center;
-
       padding: 18px;
-
       margin-top: 28px;
-
     }
-
-
 
     @media (max-width: 1199px) {
-
       .store-grid {
-
         grid-template-columns: repeat(3, minmax(0, 1fr));
-
       }
-
     }
-
-
 
     @media (max-width: 991px) {
-
       .featured-content h1 {
-
         font-size: 2.7rem;
-
       }
-
-
 
       .store-grid {
-
         grid-template-columns: repeat(2, minmax(0, 1fr));
-
       }
-
     }
-
-
 
     @media (max-width: 767px) {
-
       .featured-banner {
-
         min-height: 380px;
-
       }
-
-
 
       .featured-content {
-
         padding: 34px 24px;
-
       }
-
-
 
       .featured-content h1 {
-
         font-size: 2.2rem;
-
       }
-
-
 
       .store-grid {
-
         grid-template-columns: 1fr;
-
       }
-
-
 
       .product-actions {
-
         flex-direction: column;
-
       }
-
-
 
       .product-actions .btn {
-
         width: 100%;
-
       }
-
-
 
       .promo-stats {
-
         flex-direction: column;
-
       }
-
     }
-
   </style>
-
 </head>
-
 <body>
-
-
-
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow">
-
     <div class="container">
-
         <a class="navbar-brand fw-bold" href="index.html">NextGen Gaming</a>
-
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-
             <span class="navbar-toggler-icon"></span>
-
         </button>
-
         <div class="collapse navbar-collapse" id="navbarNav">
-
             <div class="navbar-nav ms-auto">
-
                 <a class="nav-link" href="index.html">Home</a>
                 <a class="nav-link" href="search.html">Search</a>
                 <a class="nav-link" href="about.html">About</a>
                 <a class="nav-link" href="features.html">Features</a>
                 <a class="nav-link" href="contact.html">Contact</a>
                 <a class="nav-link active" href="promotion.html">Promotions</a> 
-                <a class="nav-link" href="wishlist.html">Wishlist</a> 
                 <a class="nav-link" href="gallery.html">Gallery</a>
                 <a class="nav-link" href="cart.html">
-
                 <i class="bi bi-cart3" style="font-size: 1.2rem;"></i></a>
-
-       
-
             </div>
-
         </div>
-
     </div>
-
 </nav>
 
-
-
   <section class="hero">
-
     <div class="container">
-
       <div class="featured-banner">
-
         <div class="featured-content">
-
           <div class="hero-kicker">Limited-Time Offers</div>
-
           <h1>Big Promotions for Console Gamers</h1>
-
           <p>
-
             Discover today’s best gaming console deals, exclusive bundle sales, and limited-time offers in a clean
-
             store-style promotion page inspired by premium gaming storefronts.
-
           </p>
-
-
-
           <div class="hero-actions">
-
             <button class="btn btn-primary" onclick="scrollToSection('hotDeals')">Explore Deals</button>
-
             <button class="btn btn-light" onclick="scrollToSection('bundleSales')">View Bundles</button>
-
           </div>
-
-
-
           <div class="promo-stats">
-
             <div class="promo-stat">
-
               <strong>Up to 20% Off</strong>
-
               <span>Selected console bundles</span>
-
             </div>
-
             <div class="promo-stat">
-
               <strong>4 Featured Deals</strong>
-
               <span>Updated promotions</span>
-
             </div>
-
             <div class="promo-stat">
-
               <strong>Member Perks</strong>
-
               <span>Extra savings available</span>
-
             </div>
-
           </div>
-
         </div>
-
       </div>
-
     </div>
-
   </section>
-
-
 
   <section class="page-section" id="hotDeals">
-
     <div class="container">
-
       <div class="section-header">
-
         <div>
-
           <h2>Hot Deals</h2>
-
           <p>Highlighted promotion products with strong visual pricing and deal tags.</p>
-
         </div>
-
       </div>
-
-
-
       <div class="store-grid">
-
         <div class="product-card">
-
           <div class="product-image-wrap">
-
             <span class="discount-badge">20% OFF</span>
-
             <img src="images/ps5bundle.jpeg" alt="PlayStation 5 Bundle">
-
           </div>
-
           <div class="product-body">
-
             <div class="product-type">Promotion</div>
-
             <div class="product-title">PlayStation 5 Bundle</div>
-
             <div class="product-desc">
-
               Get the PlayStation 5 with an extra controller and a popular exclusive title at a special promotional price.
-
             </div>
-
             <div class="save-tag">Save RM 600</div>
-
             <div class="price-row">
-
               <span class="old-price">RM 2999</span>
-
               <span class="sale-price">RM 2399</span>
-
             </div>
-
             <div class="product-actions">
-
               <button class="btn btn-primary w-50" onclick="showDealModal('PlayStation 5 Bundle', 'Special promotion price: RM 2399<br>Includes extra controller and game bundle.', '🔥')">View Promotion</button>
-
-              <button class="btn btn-outline-primary w-50" onclick="addToCart('PlayStation 5 Bundle', 'RM 2399','image/ps5bundle.jpeg')">Add to Cart</button>
-
+              <button class="btn btn-outline-primary w-50" onclick="addToCart('PlayStation 5 Bundle', 'RM 2399','images/ps5bundle.jpeg')">Add to Cart</button>
             </div>
-
           </div>
-
         </div>
 
-
-
         <div class="product-card">
-
           <div class="product-image-wrap">
-
             <span class="discount-badge">15% OFF</span>
-
             <img src="images/xbox.jpeg" alt="Xbox Series X + Game Pass">
-
           </div>
-
           <div class="product-body">
-
             <div class="product-type">Promotion</div>
-
             <div class="product-title">Xbox Series X + Game Pass</div>
-
             <div class="product-desc">
-
               Enjoy the Xbox Series X together with a discounted Game Pass Ultimate subscription for a better-value setup.
-
             </div>
-
             <div class="save-tag">Save RM 434</div>
-
             <div class="price-row">
-
               <span class="old-price">RM 2899</span>
-
               <span class="sale-price">RM 2465</span>
-
             </div>
-
             <div class="product-actions">
-
               <button class="btn btn-success w-50" onclick="showDealModal('Xbox Series X + Game Pass', 'Promotion price: RM 2465<br>Includes discounted Game Pass Ultimate subscription.', '⚡')">View Promotion</button>
-
-              <button class="btn btn-outline-success w-50" onclick="addToCart('Xbox Series X + Game Pass', 'RM 2465', 'image/xbox.jpeg')">Add to Cart</button>
-
+              <button class="btn btn-outline-success w-50" onclick="addToCart('Xbox Series X + Game Pass', 'RM 2465', 'images/xbox.jpeg')">Add to Cart</button>
             </div>
-
           </div>
-
         </div>
 
-
-
         <div class="product-card">
-
           <div class="product-image-wrap">
-
             <span class="discount-badge">Bundle Sale</span>
-
             <img src="images/nintendoswitch.jpeg" alt="Nintendo Switch Family Pack">
-
           </div>
-
           <div class="product-body">
-
             <div class="product-type">Promotion</div>
-
             <div class="product-title">Nintendo Switch Family Pack</div>
-
             <div class="product-desc">
-
               Purchase the Nintendo Switch with Mario Kart and family-friendly accessories for more value in one deal.
-
             </div>
-
             <div class="save-tag">Save RM 300</div>
-
             <div class="price-row">
-
               <span class="old-price">RM 1899</span>
-
               <span class="sale-price">RM 1599</span>
-
             </div>
-
             <div class="product-actions">
-
               <button class="btn btn-danger w-50" onclick="showDealModal('Nintendo Switch Family Pack', 'Promotion price: RM 1599<br>Includes family-friendly game and accessories.', '🎉')">View Promotion</button>
-
-              <button class="btn btn-outline-danger w-50" onclick="addToCart('Nintendo Switch Family Pack', 'RM 1599', 'image/nintendoswitch.jpeg')">Add to Cart</button>
-
+              <button class="btn btn-outline-danger w-50" onclick="addToCart('Nintendo Switch Family Pack', 'RM 1599', 'images/nintendoswitch.jpeg')">Add to Cart</button>
             </div>
-
           </div>
-
         </div>
-
-
 
         <div class="product-card">
-
           <div class="product-image-wrap">
-
             <span class="discount-badge">Top Pick</span>
-
             <img src="images/easportfc.jpeg" alt="EA Sports FC 26">
-
           </div>
-
           <div class="product-body">
-
             <div class="product-type">New Release</div>
-
             <div class="product-title">EA Sports FC 26</div>
-
             <div class="product-desc">
-
               One of the most popular sports titles right now, perfect for players who want quick matches and online play.
-
             </div>
-
             <div class="save-tag">Featured Release</div>
-
             <div class="price-row">
-
               <span class="normal-price">RM 299</span>
-
             </div>
-
             <div class="product-actions">
-
               <button class="btn btn-dark w-50" onclick="showDealModal('EA Sports FC 26', 'Current promotional spotlight item: RM 299<br>Popular choice for competitive multiplayer gaming.', '⭐')">View Promotion</button>
-
-              <button class="btn btn-outline-dark w-50" onclick="addToCart('EA Sports FC 26', 'RM 299', 'image/easportfc.jpeg')">Add to Cart</button>
-
+              <button class="btn btn-outline-dark w-50" onclick="addToCart('EA Sports FC 26', 'RM 299', 'images/easportfc.jpeg')">Add to Cart</button>
             </div>
-
           </div>
-
         </div>
-
       </div>
-
-
 
       <div class="promo-strip">
-
         <div class="promo-strip-content">
-
           <h3>Discover Premium Membership</h3>
-
           <p>
-
             Unlock member-only discounts, early access to seasonal promotions, and premium gaming rewards with a more
-
             exclusive shopping experience.
-
           </p>
-
           <button class="btn btn-light" onclick="showDealModal('Premium Membership', 'Exclusive membership promotions and early access offers will be available soon.', '⭐')">Learn More</button>
-
         </div>
-
       </div>
-
     </div>
-
   </section>
-
-
 
   <section class="page-section" id="bundleSales">
-
     <div class="container">
-
       <div class="section-header">
-
         <div>
-
           <h2>Bundle Sales</h2>
-
           <p>Premium-value bundles with included items and stronger savings display.</p>
-
         </div>
-
       </div>
-
-
 
       <div class="store-grid">
-
         <div class="product-card">
-
           <div class="product-image-wrap">
-
             <span class="discount-badge">SAVE RM300</span>
-
             <img src="images/ps5ultimatebundle.jpeg" alt="PS5 Ultimate Bundle">
-
           </div>
-
           <div class="product-body">
-
             <div class="product-type">Premium Bundle</div>
-
             <div class="product-title">PS5 Ultimate Bundle</div>
-
             <div class="product-desc">
-
               Perfect for players who want the full next-generation PlayStation experience in one premium package.
-
             </div>
-
             <div class="bundle-box">
-
               <h6>Includes</h6>
-
               <ul>
-
                 <li>PlayStation 5 Console</li>
-
                 <li>DualSense Controller</li>
-
                 <li>Spider-Man Game</li>
-
               </ul>
-
             </div>
-
             <div class="price-row">
-
               <span class="old-price">RM 2999</span>
-
               <span class="sale-price">RM 2699</span>
-
             </div>
-
             <div class="product-actions">
-
               <button class="btn btn-primary w-50" onclick="showDealModal('PS5 Ultimate Bundle', 'Bundle promotion price: RM 2699<br>Includes console, controller, and Spider-Man game.', '🎮')">View Bundle Deal</button>
-
-              <button class="btn btn-outline-primary w-50" onclick="addToCart('PS5 Ultimate Bundle', 'RM 2699', 'image/ps5ultimatebundle.jpeg')">Add to Cart</button>
-
+              <button class="btn btn-outline-primary w-50" onclick="addToCart('PS5 Ultimate Bundle', 'RM 2699', 'images/ps5ultimatebundle.jpeg')">Add to Cart</button>
             </div>
-
           </div>
-
         </div>
 
-
-
         <div class="product-card">
-
           <div class="product-image-wrap">
-
             <span class="discount-badge">SAVE RM300</span>
-
             <img src="images/xbox.jpeg" alt="Xbox Power Bundle">
-
           </div>
-
           <div class="product-body">
-
             <div class="product-type">Premium Bundle</div>
-
             <div class="product-title">Xbox Power Bundle</div>
-
             <div class="product-desc">
-
               A complete Xbox setup with performance, multiplayer access, and an extra controller for more fun.
-
             </div>
-
             <div class="bundle-box">
-
               <h6>Includes</h6>
-
               <ul>
-
                 <li>Xbox Series X</li>
-
                 <li>Extra Controller</li>
-
                 <li>Game Pass Ultimate (3 months)</li>
-
               </ul>
-
             </div>
-
             <div class="price-row">
-
               <span class="old-price">RM 2899</span>
-
               <span class="sale-price">RM 2599</span>
-
             </div>
-
             <div class="product-actions">
-
               <button class="btn btn-success w-50" onclick="showDealModal('Xbox Power Bundle', 'Bundle promotion price: RM 2599<br>Includes console, extra controller, and Game Pass.', '⚡')">View Bundle Deal</button>
-
-              <button class="btn btn-outline-success w-50" onclick="addToCart('Xbox Power Bundle', 'RM 2599', 'image/xbox.jpeg')">Add to Cart</button>
-
+              <button class="btn btn-outline-success w-50" onclick="addToCart('Xbox Power Bundle', 'RM 2599', 'images/xbox.jpeg')">Add to Cart</button>
             </div>
-
           </div>
-
         </div>
 
-
-
         <div class="product-card">
-
           <div class="product-image-wrap">
-
             <span class="discount-badge">SAVE RM300</span>
-
             <img src="images/nintendoswitch.jpeg" alt="Switch Family Bundle">
-
           </div>
-
           <div class="product-body">
-
             <div class="product-type">Premium Bundle</div>
-
             <div class="product-title">Switch Family Bundle</div>
-
             <div class="product-desc">
-
               A family-friendly bundle designed for fun at home or on the go with Nintendo favorites.
-
             </div>
-
             <div class="bundle-box">
-
               <h6>Includes</h6>
-
               <ul>
-
                 <li>Nintendo Switch OLED</li>
-
                 <li>Mario Kart 8 Deluxe</li>
-
                 <li>Carrying Case</li>
-
               </ul>
-
             </div>
-
             <div class="price-row">
-
               <span class="old-price">RM 1899</span>
-
               <span class="sale-price">RM 1599</span>
-
             </div>
-
             <div class="product-actions">
-
               <button class="btn btn-danger w-50" onclick="showDealModal('Switch Family Bundle', 'Bundle promotion price: RM 1599<br>Includes Switch OLED, Mario Kart, and carrying case.', '🎉')">View Bundle Deal</button>
-
-              <button class="btn btn-outline-danger w-50" onclick="addToCart('Switch Family Bundle', 'RM 1599', 'image/nintendoswitch.jpeg')">Add to Cart</button>
-
+              <button class="btn btn-outline-danger w-50" onclick="addToCart('Switch Family Bundle', 'RM 1599', 'images/nintendoswitch.jpeg')">Add to Cart</button>
             </div>
-
           </div>
-
         </div>
-
-
 
         <div class="product-card">
-
           <div class="product-image-wrap">
-
             <span class="discount-badge">Starter Pick</span>
-
             <img src="images/gamingstarterpack.jpeg" alt="Gaming Starter Pack">
-
           </div>
-
           <div class="product-body">
-
             <div class="product-type">Starter Bundle</div>
-
             <div class="product-title">Gaming Starter Pack</div>
-
             <div class="product-desc">
-
               A balanced package for new players who want console gaming with key accessories in one affordable deal.
-
             </div>
-
             <div class="bundle-box">
-
               <h6>Includes</h6>
-
               <ul>
-
                 <li>Console Stand</li>
-
                 <li>Wireless Controller</li>
-
                 <li>Starter Game</li>
-
               </ul>
-
             </div>
-
             <div class="price-row">
-
               <span class="normal-price">RM 899</span>
-
             </div>
-
             <div class="product-actions">
-
               <button class="btn btn-dark w-50" onclick="showDealModal('Gaming Starter Pack', 'Current starter pack price: RM 899<br>Great for beginner gamers.', '🚀')">View Bundle Deal</button>
-
-              <button class="btn btn-outline-dark w-50" onclick="addToCart('Gaming Starter Pack', 'RM 899', 'image/gamingstarterpack.jpeg')">Add to Cart</button>
-
+              <button class="btn btn-outline-dark w-50" onclick="addToCart('Gaming Starter Pack', 'RM 899', 'images/gamingstarterpack.jpeg')">Add to Cart</button>
             </div>
-
           </div>
-
         </div>
-
       </div>
-
     </div>
-
   </section>
-
-
 
   <section class="page-section" id="accessories">
-
     <div class="container">
-
       <div class="section-header">
-
         <div>
-
           <h2>Accessories on Promotion</h2>
-
           <p>Extra products to complete the setup with a cleaner promotional display.</p>
-
         </div>
-
       </div>
-
-
 
       <div class="store-grid">
-
         <div class="product-card">
-
           <div class="product-image-wrap">
-
             <img src="images/dualsensecontroller.jpeg" alt="DualSense Wireless Controller">
-
           </div>
-
           <div class="product-body">
-
             <div class="product-type">Accessory</div>
-
             <div class="product-title">DualSense Wireless Controller</div>
-
             <div class="product-desc">
-
               Enhance your PlayStation gaming experience with the official DualSense wireless controller.
-
             </div>
-
             <div class="price-row">
-
               <span class="normal-price">RM 329</span>
-
             </div>
-
             <div class="product-actions">
-
               <button class="btn btn-primary w-50" onclick="showDealModal('DualSense Wireless Controller', 'Official PlayStation accessory priced at RM 329.', '🎮')">View Item</button>
-
-              <button class="btn btn-outline-primary w-50" onclick="addToCart('DualSense Wireless Controller', 'RM 329', 'image/dualsensecontroller.jpeg')">Add to Cart</button>
-
+              <button class="btn btn-outline-primary w-50" onclick="addToCart('DualSense Wireless Controller', 'RM 329', 'images/dualsensecontroller.jpeg')">Add to Cart</button>
             </div>
-
           </div>
-
         </div>
 
-
-
         <div class="product-card">
-
           <div class="product-image-wrap">
-
             <img src="images/xboxcontroller.jpeg" alt="Xbox Wireless Controller">
-
           </div>
-
           <div class="product-body">
-
             <div class="product-type">Accessory</div>
-
             <div class="product-title">Xbox Wireless Controller</div>
-
             <div class="product-desc">
-
               A comfortable and responsive controller for Xbox console and PC gaming.
-
             </div>
-
             <div class="price-row">
-
               <span class="normal-price">RM 299</span>
-
             </div>
-
             <div class="product-actions">
-
               <button class="btn btn-success w-50" onclick="showDealModal('Xbox Wireless Controller', 'Official Xbox accessory priced at RM 299.', '⚡')">View Item</button>
-
-              <button class="btn btn-outline-success w-50" onclick="addToCart('Xbox Wireless Controller', 'RM 299', 'image/xboxcontroller.jpeg')">Add to Cart</button>
-
+              <button class="btn btn-outline-success w-50" onclick="addToCart('Xbox Wireless Controller', 'RM 299', 'images/xboxcontroller.jpeg')">Add to Cart</button>
             </div>
-
           </div>
-
         </div>
 
-
-
         <div class="product-card">
-
           <div class="product-image-wrap">
-
             <img src="images/nitendoswtichprocontroller.jpeg" alt="Nintendo Switch Pro Controller">
-
           </div>
-
           <div class="product-body">
-
             <div class="product-type">Accessory</div>
-
             <div class="product-title">Nintendo Switch Pro Controller</div>
-
             <div class="product-desc">
-
               A comfortable pro controller for long Nintendo Switch gaming sessions.
-
             </div>
-
             <div class="price-row">
-
               <span class="normal-price">RM 279</span>
-
             </div>
-
             <div class="product-actions">
-
               <button class="btn btn-danger w-50" onclick="showDealModal('Nintendo Switch Pro Controller', 'Nintendo accessory priced at RM 279.', '🎉')">View Item</button>
-
-              <button class="btn btn-outline-danger w-50" onclick="addToCart('Nintendo Switch Pro Controller', 'RM 279', 'image/nitendoswtichprocontroller.jpeg')">Add to Cart</button>
-
+              <button class="btn btn-outline-danger w-50" onclick="addToCart('Nintendo Switch Pro Controller', 'RM 279', 'images/nitendoswtichprocontroller.jpeg')">Add to Cart</button>
             </div>
-
           </div>
-
         </div>
-
-
 
         <div class="product-card">
-
           <div class="product-image-wrap">
-
             <img src="images/gamingheadset.png" alt="Gaming Headset">
-
           </div>
-
           <div class="product-body">
-
             <div class="product-type">Accessory</div>
-
             <div class="product-title">Gaming Headset</div>
-
             <div class="product-desc">
-
               Clear team communication and immersive sound for multiplayer and story-driven titles.
-
             </div>
-
             <div class="price-row">
-
               <span class="normal-price">RM 199</span>
-
             </div>
-
             <div class="product-actions">
-
               <button class="btn btn-dark w-50" onclick="showDealModal('Gaming Headset', 'Gaming headset currently priced at RM 199.', '🎧')">View Item</button>
-
-              <button class="btn btn-outline-dark w-50" onclick="addToCart('Gaming Headset', 'RM 199', 'image/gamingheadset.png')">Add to Cart</button>
-
+              <button class="btn btn-outline-dark w-50" onclick="addToCart('Gaming Headset', 'RM 199', 'images/gamingheadset.png')">Add to Cart</button>
             </div>
-
           </div>
-
         </div>
-
       </div>
-
     </div>
-
   </section>
 
-
-
   <div class="custom-modal" id="dealModal">
-
     <div class="custom-modal-box">
-
       <div class="custom-modal-icon" id="modalIcon">🎮</div>
-
       <h4 id="modalTitle">Promotion</h4>
-
       <p id="modalMessage">More details will appear here.</p>
-
       <button class="btn btn-primary px-4" onclick="closeDealModal()">OK</button>
-
     </div>
-
   </div>
 
-
-
   <footer>
-
     <p>© 2026 NextGen Gaming | Promotions Page</p>
-
   </footer>
 
-
-
   <script>
-
     function scrollToSection(sectionId) {
-
       const section = document.getElementById(sectionId);
-
       if (section) {
-
         section.scrollIntoView({ behavior: "smooth" });
-
       }
-
     }
-
-
 
     function showDealModal(title, message, icon = "🎮") {
-
       document.getElementById("modalTitle").innerHTML = title;
-
       document.getElementById("modalMessage").innerHTML = message;
-
       document.getElementById("modalIcon").innerHTML = icon;
-
       document.getElementById("dealModal").style.display = "flex";
-
     }
-
-
 
     function closeDealModal() {
-
       document.getElementById("dealModal").style.display = "none";
-
     }
-
-
 
     function setCookie(name, value, days) {
-
       let expires = "";
-
       if (days) {
-
         const date = new Date();
-
         date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-
         expires = "; expires=" + date.toUTCString();
-
       }
-
       document.cookie = name + "=" + encodeURIComponent(value) + expires + "; path=/";
-
     }
-
-
 
     function getCookie(name) {
-
       const cookies = document.cookie.split(";");
-
       for (let c of cookies) {
-
         const parts = c.trim().split("=");
-
         const key = parts[0];
-
         const value = parts.slice(1).join("=");
-
         if (key === name) return decodeURIComponent(value);
-
       }
-
       return null;
-
     }
-
-
 
     function addToCart(productName, price, image = "") {
-
       sessionStorage.setItem("lastViewedProduct", productName);
-
       setCookie("visited", "true", 7);
-
-
-
       let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-
-
       const existing = cart.find(item => item.name === productName);
-
-
-
       if (existing) {
-
         existing.qty = (existing.qty || 1) + 1;
-
       } else {
-
         cart.push({
-
           name: productName,
-
           price: price,
-
           image: image,
-
           qty: 1
-
         });
-
       }
-
-
-
       localStorage.setItem("cart", JSON.stringify(cart));
-
       showDealModal("Added to Cart", productName + " has been added successfully.", "🛒");
-
     }
-
-
-
     window.onload = function () {
-
       const lastViewed = sessionStorage.getItem("lastViewedProduct");
-
       if (lastViewed) {
-
         console.log("Last viewed product:", lastViewed);
-
       }
-
-
-
       const visited = getCookie("visited");
-
       if (visited) {
-
         console.log("Returning visitor");
-
       }
-
     };
-
   </script>
-
 </body>
-
 </html>
