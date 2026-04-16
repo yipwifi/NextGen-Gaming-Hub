@@ -148,40 +148,34 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 let discount = 0;
 
+/* ===================== RENDER ===================== */
 function renderCart() {
     let container = document.getElementById("cartItems");
     container.innerHTML = "";
 
-    let subtotal = 0;
-    let itemsCount = 0;
-
     cart.forEach((item, index) => {
 
-        // ✅ FIX 1: safe quantity
-        let qty = item.qty || item.quantity || 1;
+        let qty = item.qty || 1;
 
-        // ✅ FIX 2: safe price (convert to number)
         let price = typeof item.price === "string"
             ? parseFloat(item.price.replace(/[^\d.]/g, "")) || 0
             : item.price || 0;
 
-        subtotal += price * qty;
-        itemsCount += qty;
-
         container.innerHTML += `
         <div class="cart-item d-flex justify-content-between align-items-center mb-3 p-3 border rounded">
-            
+
             <div class="d-flex align-items-center gap-3">
-                <input type="checkbox" class="item-check" onchange="updateSummary()">
-                
-                <!-- ✅ FIX 3: image fallback -->
-                <img src="${item.image || 'https://via.placeholder.com/100x80'}" 
+                <input type="checkbox"
+                    class="item-check"
+                    ${item.selected ? "checked" : ""}
+                    onchange="toggleSelect(${index})">
+
+                <img src="${item.image || 'https://via.placeholder.com/100x80'}"
                      style="width:80px;height:60px;object-fit:cover;border-radius:8px;">
-                
+
                 <div>
                     <h6>${item.name}</h6>
                     <small>RM ${price.toFixed(2)}</small>
@@ -190,12 +184,8 @@ function renderCart() {
 
             <div class="d-flex align-items-center gap-2">
                 <button class="qty-btn" onclick="changeQty(${index}, -1)">-</button>
-                
-                <!-- ✅ FIX 4: no more undefined -->
                 <span>${qty}</span>
-                
                 <button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
-
                 <button class="btn btn-danger btn-sm" onclick="removeItem(${index})">Remove</button>
             </div>
 
@@ -203,52 +193,96 @@ function renderCart() {
         `;
     });
 
-    updateSummary(subtotal, itemsCount);
+    updateSummary();
 }
 
+/* ===================== QUANTITY ===================== */
 function changeQty(index, change) {
     if (!cart[index].qty) cart[index].qty = 1;
 
     cart[index].qty += change;
+    if (cart[index].qty <= 1) cart[index].qty = 1;
 
-    if (cart[index].qty <= 0) cart[index].qty = 1;
-
-    localStorage.setItem("cart", JSON.stringify(cart));
-    renderCart();
+    saveCart();
 }
 
+/* ===================== SELECT ===================== */
+function toggleSelect(index) {
+    cart[index].selected = !cart[index].selected;
+    saveCart();
+}
+
+function toggleSelectAll() {
+    let allChecked = document.getElementById("selectAll").checked;
+    cart.forEach(item => item.selected = allChecked);
+    saveCart();
+}
+
+/* ===================== REMOVE ===================== */
 function removeItem(index) {
     cart.splice(index, 1);
     saveCart();
 }
 
+function removeSelected() {
+    cart = cart.filter(item => !item.selected);
+    saveCart();
+}
+
+/* ===================== CLEAR ===================== */
+function clearCart() {
+    cart = [];
+    saveCart();
+}
+
+/* ===================== SAVE ===================== */
 function saveCart() {
     localStorage.setItem("cart", JSON.stringify(cart));
     renderCart();
 }
 
-function updateSummary(subtotal = 0, itemsCount = 0) {
-    document.getElementById("summaryItems").innerText = itemsCount;
-    document.getElementById("summarySubtotal").innerText = "RM " + subtotal.toFixed(2);
+/* ===================== SUMMARY (FIXED CORE) ===================== */
+function updateSummary() {
+
+    let subtotal = 0;
+    let itemsCount = 0;
+
+    cart.forEach(item => {
+        if (!item.selected) return;
+
+        let qty = item.qty || 1;
+
+        let price = typeof item.price === "string"
+            ? parseFloat(item.price.replace(/[^\d.]/g, "")) || 0
+            : item.price || 0;
+
+        subtotal += price * qty;
+        itemsCount += qty;
+    });
 
     let total = subtotal - discount;
 
+    document.getElementById("summaryItems").innerText = itemsCount;
+    document.getElementById("summarySubtotal").innerText = "RM " + subtotal.toFixed(2);
+    document.getElementById("summaryDiscount").innerText = "- RM " + discount.toFixed(2);
     document.getElementById("cartTotal").innerText = "RM " + total.toFixed(2);
 }
 
+/* ===================== PROMO ===================== */
 function applyPromo() {
     let code = document.getElementById("promoCode").value;
 
     if (code === "SAVE10") {
         discount = 10;
-        document.getElementById("summaryDiscount").innerText = "- RM 10.00";
     } else {
         alert("Invalid promo code");
+        discount = 0;
     }
 
-    renderCart();
+    updateSummary();
 }
 
+/* ===================== CHECKOUT ===================== */
 function checkout() {
     alert("Payment Successful! 🎉");
     localStorage.removeItem("cart");
@@ -256,7 +290,6 @@ function checkout() {
 }
 
 window.onload = renderCart;
-
-  </script>
+</script>
 </body>
 </html>
