@@ -207,9 +207,14 @@ function renderCart() {
 }
 
 function changeQty(index, change) {
-    cart[index].quantity += change;
-    if (cart[index].quantity <= 0) cart.splice(index, 1);
-    saveCart();
+    if (!cart[index].qty) cart[index].qty = 1;
+
+    cart[index].qty += change;
+
+    if (cart[index].qty <= 0) cart[index].qty = 1;
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+    renderCart();
 }
 
 function removeItem(index) {
