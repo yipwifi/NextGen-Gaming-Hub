@@ -1862,49 +1862,34 @@
 
 
 
-    function addToCart(productName, price, image = "") {
+function addToCart(productName, price, image = "") {
 
-      sessionStorage.setItem("lastViewedProduct", productName);
+  sessionStorage.setItem("lastViewedProduct", productName);
+  setCookie("visited", "true", 7);
 
-      setCookie("visited", "true", 7);
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
+  // ✅ FIX PRICE (NO MORE NaN)
+  let cleanPrice = parseFloat(price.toString().replace(/[^\d.]/g, "")) || 0;
 
+  const existing = cart.find(item => item.name === productName);
 
-      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  if (existing) {
+    existing.qty = (existing.qty || 1) + 1;
+  } else {
+    cart.push({
+      name: productName,
+      price: cleanPrice,
+      image: image || "https://via.placeholder.com/100x80?text=No+Image",
+      qty: 1,
+      selected: true   // 🔥 IMPORTANT
+    });
+  }
 
+  localStorage.setItem("cart", JSON.stringify(cart));
 
-
-      const existing = cart.find(item => item.name === productName);
-
-
-
-      if (existing) {
-
-        existing.qty = (existing.qty || 1) + 1;
-
-      } else {
-
-        cart.push({
-
-          name: productName,
-
-          price: price,
-
-          image: image,
-
-          qty: 1
-
-        });
-
-      }
-
-
-
-      localStorage.setItem("cart", JSON.stringify(cart));
-
-      showDealModal("Added to Cart", productName + " has been added successfully.", "🛒");
-
-    }
+  showDealModal("Added to Cart", productName + " added successfully!", "🛒");
+}
 
 
 
